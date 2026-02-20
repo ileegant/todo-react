@@ -4,6 +4,7 @@ import type { Todo } from "./types";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 import TodoHeader from "./components/TodoHeader";
+import EmptyState from "./components/EmptyState";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -48,18 +49,22 @@ function App() {
             todosCount={todos.length}
             completedCount={completedTodos.length}
           />
-          <div className="overflow-y-auto no-scrollbar">
-            <TodoList
-              todos={activeTodos}
-              onDelete={handleDeleteTodo}
-              onToggle={handleToggleTodo}
-            />
-            <TodoList
-              todos={completedTodos}
-              onDelete={handleDeleteTodo}
-              onToggle={handleToggleTodo}
-            />
-          </div>
+          {todos.length > 0 ? (
+            <div className="overflow-y-auto no-scrollbar">
+              <TodoList
+                todos={activeTodos}
+                onDelete={handleDeleteTodo}
+                onToggle={handleToggleTodo}
+              />
+              <TodoList
+                todos={completedTodos}
+                onDelete={handleDeleteTodo}
+                onToggle={handleToggleTodo}
+              />
+            </div>
+          ) : (
+            <EmptyState />
+          )}
         </div>
         <TodoForm onAdd={handleAddTodo} />
       </div>

@@ -9,28 +9,18 @@ interface TodoListProps {
 }
 
 export default function TodoList({ todos, onDelete, onToggle }: TodoListProps) {
-  const todosCount = todos.length;
-
   return (
-    <>
-      {todosCount === 0 ? (
-        <EmptyState />
-      ) : (
-        <>
-          <ul>
-            {todos.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                id={todo.id}
-                content={todo.content}
-                isCompleted={todo.isCompleted}
-                onDelete={onDelete}
-                onToggle={onToggle}
-              />
-            ))}
-          </ul>
-        </>
-      )}
-    </>
+    <ul>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          id={todo.id}
+          content={todo.content}
+          isCompleted={todo.isCompleted}
+          onDelete={onDelete}
+          onToggle={onToggle}
+        />
+      ))}
+    </ul>
   );
 }

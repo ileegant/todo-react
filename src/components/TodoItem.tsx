@@ -8,7 +8,7 @@ interface TodoItemProps extends Todo {
 export default function TodoItem({
   id,
   content,
-  isComplited,
+  isCompleted,
   onDelete,
   onToggle,
 }: TodoItemProps) {
@@ -22,7 +22,7 @@ export default function TodoItem({
           onToggle(id);
         }}
         className={`${
-          isComplited ? "line-through text-gray-400" : "text-gray-800"
+          isCompleted ? "line-through text-gray-400" : "text-gray-800"
         } cursor-pointer`}
       >
         {content}

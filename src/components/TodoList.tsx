@@ -9,7 +9,7 @@ interface TodoListProps {
 
 export default function TodoList({ todos, onDelete, onToggle }: TodoListProps) {
   const todosCount = todos.length;
-  const completedCount = todos.filter((todo) => todo.isComplited).length;
+  const completedCount = todos.filter((todo) => todo.isCompleted).length;
 
   return (
     <div className="flex flex-2 flex-col space-y-4 p-6 text-gray-600">
@@ -25,7 +25,7 @@ export default function TodoList({ todos, onDelete, onToggle }: TodoListProps) {
             key={todo.id}
             id={todo.id}
             content={todo.content}
-            isComplited={todo.isComplited}
+            isCompleted={todo.isCompleted}
             onDelete={onDelete}
             onToggle={onToggle}
           />

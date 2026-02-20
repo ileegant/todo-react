@@ -15,7 +15,7 @@ function App() {
   function handleToggleTodo(id: number) {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, isComplited: !todo.isComplited } : todo
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       )
     );
   }
@@ -26,7 +26,7 @@ function App() {
     const newTodo = {
       id: newId,
       content: value,
-      isComplited: false,
+      isCompleted: false,
     };
 
     setTodos((prev) => [...prev, newTodo]);
@@ -35,7 +35,11 @@ function App() {
   return (
     <div className="relative min-h-screen w-full flex justify-center items-center bg-white overflow-hidden">
       <div className="flex justify-around bg-gray-100 border-2 border-gray-200 rounded-sm w-[940px] h-[620px]">
-        <TodoList todos={todos} onDelete={handleDeleteTodo} onToggle={handleToggleTodo}/>
+        <TodoList
+          todos={todos}
+          onDelete={handleDeleteTodo}
+          onToggle={handleToggleTodo}
+        />
         <TodoForm onAdd={handleAddTodo} />
       </div>
     </div>

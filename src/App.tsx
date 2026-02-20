@@ -21,7 +21,7 @@ function App() {
             className="w-full max-w-lg min-h-[120px] p-2 border border-gray-400 rounded-sm text-slate-800 resize-none"
             placeholder="Write here.."
           />
-          <button className="border-2 py-1 px-4 font-bold border-gray-600 cursor-pointer hover:bg-gray-600 hover:text-gray-200">
+          <button className="w-full border-2 py-1 font-bold border-gray-600 cursor-pointer hover:bg-gray-600 hover:text-gray-200">
             ADD TODO
           </button>
         </div>

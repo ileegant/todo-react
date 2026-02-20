@@ -6,7 +6,7 @@ interface TodoFormProps {
 
 export default function TodoForm({ onAdd }: TodoFormProps) {
   const [value, setValue] = useState("");
-  const isValid = value.length > 0;
+  const isValid = value.trim().length > 0;
 
   return (
     <div className="flex flex-1 flex-col space-y-4 items-center text-gray-600 p-6 bg-gray-200">

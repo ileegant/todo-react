@@ -14,9 +14,7 @@ export default function TodoList({ todos, onDelete, onToggle }: TodoListProps) {
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
-          id={todo.id}
-          content={todo.content}
-          isCompleted={todo.isCompleted}
+          todo={todo}
           onDelete={onDelete}
           onToggle={onToggle}
         />

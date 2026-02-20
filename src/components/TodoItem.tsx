@@ -1,35 +1,30 @@
 import type { Todo } from "../types";
 
-interface TodoItemProps extends Todo {
+interface TodoItemProps {
+  todo: Todo;
   onDelete: (id: string) => void;
   onToggle: (id: string) => void;
 }
 
-export default function TodoItem({
-  id,
-  content,
-  isCompleted,
-  onDelete,
-  onToggle,
-}: TodoItemProps) {
+export default function TodoItem({ todo, onDelete, onToggle }: TodoItemProps) {
   return (
     <li
-      key={id}
+      key={todo.id}
       className="flex justify-between items-center border-b border-gray-300 p-4"
     >
       <button
         onClick={() => {
-          onToggle(id);
+          onToggle(todo.id);
         }}
         className={`${
-          isCompleted ? "line-through text-gray-400" : "text-gray-800"
+          todo.isCompleted ? "line-through text-gray-400" : "text-gray-800"
         } cursor-pointer`}
       >
-        {content}
+        {todo.content}
       </button>
       <button
         onClick={() => {
-          onDelete(id);
+          onDelete(todo.id);
         }}
         className="text-xs font-black hover:text-red-500 cursor-pointer"
       >

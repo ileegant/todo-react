@@ -6,6 +6,7 @@ interface TodoFormProps {
 
 export default function TodoForm({ onAdd }: TodoFormProps) {
   const [value, setValue] = useState("");
+  const isValid = value.length > 0;
 
   return (
     <div className="flex flex-1 flex-col space-y-4 items-center text-gray-600 p-6 bg-gray-200">
@@ -17,11 +18,16 @@ export default function TodoForm({ onAdd }: TodoFormProps) {
         placeholder="Write here.."
       />
       <button
-        className="w-full border-2 py-1 font-bold border-gray-600 cursor-pointer hover:bg-gray-600 hover:text-gray-200"
+        className={`w-full border-2 py-1 font-bold ${
+          isValid
+            ? "border-gray-600 cursor-pointer hover:bg-gray-600 hover:text-gray-200"
+            : "text-gray-400 border-gray-400"
+        }`}
         onClick={() => {
           onAdd(value);
           setValue("");
         }}
+        disabled={!isValid}
       >
         ADD TODO
       </button>

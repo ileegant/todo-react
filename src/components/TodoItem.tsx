@@ -29,7 +29,7 @@ export default function TodoItem({
       </button>
       <button
         onClick={() => {
-          onDelete;
+          onDelete(id);
         }}
         className="text-xs font-black hover:text-red-500 cursor-pointer"
       >

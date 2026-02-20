@@ -1,4 +1,5 @@
 import type { Todo } from "../types";
+import EmptyState from "./EmptyState";
 import TodoItem from "./TodoItem";
 
 interface TodoListProps {
@@ -19,18 +20,22 @@ export default function TodoList({ todos, onDelete, onToggle }: TodoListProps) {
           {completedCount}/{todosCount} Completed
         </h4>
       </div>
-      <ul className="overflow-y-auto no-scrollbar">
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            content={todo.content}
-            isCompleted={todo.isCompleted}
-            onDelete={onDelete}
-            onToggle={onToggle}
-          />
-        ))}
-      </ul>
+      {todosCount === 0 ? (
+        <EmptyState />
+      ) : (
+        <ul className="overflow-y-auto no-scrollbar">
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              content={todo.content}
+              isCompleted={todo.isCompleted}
+              onDelete={onDelete}
+              onToggle={onToggle}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

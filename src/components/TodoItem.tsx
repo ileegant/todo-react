@@ -1,8 +1,8 @@
 import type { Todo } from "../types";
 
 interface TodoItemProps extends Todo {
-  onDelete: (id: number) => void;
-  onToggle: (id: number) => void;
+  onDelete: (id: string) => void;
+  onToggle: (id: string) => void;
 }
 
 export default function TodoItem({

@@ -3,6 +3,7 @@ import "./App.css";
 import type { Todo } from "./types";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
+import TodoHeader from "./components/TodoHeader";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -10,15 +11,18 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const activeTodos = todos.filter((todo) => !todo.isCompleted);
+  const completedTodos = todos.filter((todo) => todo.isCompleted);
+
   useEffect(() => {
     localStorage.setItem("todos-data", JSON.stringify(todos));
   }, [todos]);
 
-  function handleDeleteTodo(id: number) {
+  function handleDeleteTodo(id: string) {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   }
 
-  function handleToggleTodo(id: number) {
+  function handleToggleTodo(id: string) {
     setTodos((prev) =>
       prev.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
@@ -27,25 +31,36 @@ function App() {
   }
 
   function handleAddTodo(value: string) {
-    const newId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
-
     const newTodo = {
-      id: newId,
+      id: crypto.randomUUID(),
       content: value,
       isCompleted: false,
     };
 
-    setTodos((prev) => [...prev, newTodo]);
+    setTodos((prev) => [newTodo, ...prev]);
   }
 
   return (
     <div className="relative min-h-screen w-full flex justify-center items-center bg-white overflow-hidden">
       <div className="flex justify-around bg-gray-100 border-2 border-gray-200 rounded-sm w-[940px] h-[620px]">
-        <TodoList
-          todos={todos}
-          onDelete={handleDeleteTodo}
-          onToggle={handleToggleTodo}
-        />
+        <div className="flex flex-2 flex-col space-y-4 p-6 text-gray-600 overflow-hidden">
+          <TodoHeader
+            todosCount={todos.length}
+            completedCount={completedTodos.length}
+          />
+          <div className="overflow-y-auto no-scrollbar">
+            <TodoList
+              todos={activeTodos}
+              onDelete={handleDeleteTodo}
+              onToggle={handleToggleTodo}
+            />
+            <TodoList
+              todos={completedTodos}
+              onDelete={handleDeleteTodo}
+              onToggle={handleToggleTodo}
+            />
+          </div>
+        </div>
         <TodoForm onAdd={handleAddTodo} />
       </div>
     </div>

@@ -12,6 +12,7 @@ export default function TodoList({ todos }: TodoListProps) {
       <ul>
         {todos.map((todo) => (
           <TodoItem
+            key={todo.id}
             id={todo.id}
             content={todo.content}
             isComplited={todo.isComplited}

@@ -18,7 +18,7 @@ export default function TodoItem({ todo, onDelete, onToggle }: TodoItemProps) {
         }}
         className={`${
           todo.isCompleted ? "line-through text-gray-400" : "text-gray-800"
-        } cursor-pointer`}
+        } cursor-pointer text-left`}
       >
         {todo.content}
       </button>

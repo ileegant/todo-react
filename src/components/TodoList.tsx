@@ -1,5 +1,4 @@
 import type { Todo } from "../types";
-import EmptyState from "./EmptyState";
 import TodoItem from "./TodoItem";
 
 interface TodoListProps {

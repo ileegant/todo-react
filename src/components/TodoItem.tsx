@@ -18,7 +18,7 @@ export default function TodoItem({ todo, onDelete, onToggle }: TodoItemProps) {
         }}
         className={`${
           todo.isCompleted ? "line-through text-gray-400" : "text-gray-800"
-        } cursor-pointer text-left`}
+        } cursor-pointer`}
       >
         {todo.content}
       </button>
@@ -33,3 +33,4 @@ export default function TodoItem({ todo, onDelete, onToggle }: TodoItemProps) {
     </li>
   );
 }
+
